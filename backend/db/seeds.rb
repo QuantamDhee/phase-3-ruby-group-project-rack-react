@@ -5,11 +5,13 @@ Game.destroy_all
 
 #creating comp seeds
 puts "Seeding Comp..."
-5.times do
-    prize = rand(100...1000)
-    dates = Faker::Date.in_date_period
-    Competition.create(name: Faker::Name.name, date: dates, prize: prize)
-  end
+    # prize = rand(100...1000)
+    # dates = Faker::Date.in_date_period
+    Competition.create(name: "League of Legends Championships", prize: 800)
+    Competition.create(name: "Smooth Brain ", prize: 1000)
+    Competition.create(name: "Brain Not Work grand Finals", prize: 650)
+    Competition.create(name: "Pokemon World Championships", prize: 915)
+
 
 #Creating 5 randoms
 puts "Seeding Player..."

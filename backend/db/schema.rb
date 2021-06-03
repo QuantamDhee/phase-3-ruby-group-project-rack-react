@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2021_06_01_225024) do
 
   create_table "competitions", force: :cascade do |t|
     t.string "name"
-    t.integer "date"
     t.integer "prize"
   end
 
