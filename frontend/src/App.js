@@ -1,25 +1,38 @@
+import React from 'react'
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import Header from './components/Header'
+import CompContainer from './components/CompContainer'
+
+const Url = 'http://localhost:9393/competitions'
+
+class App extends React.Component {
+
+  state = {
+    games: [],
+    competitions: [],
+    players: []
+  }
+
+  componentDidMount(){
+    fetch(Url)
+    .then(res => res.json())
+    .then(compData => {
+      this.setState({
+        competitions: compData.competitions
+      })
+    })
+  }
+
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {/* <Header/> */}
+      <CompContainer compData={this.state.competitions}/>
+    </>
+  )
+  }
 }
 
 export default App;
