@@ -10,6 +10,10 @@ class Application
     elsif req.path.match(/competitions/) && req.get?
       competitions = Competition.all
       return [200, { 'Content-Type' => 'application/json' }, [ {competitions: competitions}.to_json ]]
+    elsif req.path.match(/competitions/) && req.post?
+      data = JSON.parse req.body.read
+      comp = Competition.create(data)
+      return [200, { 'Content-Type' => 'application/json' }, [ {competitions: competitions}.to_json ]]
 
     else
       resp.write "you found me but nothing here"
