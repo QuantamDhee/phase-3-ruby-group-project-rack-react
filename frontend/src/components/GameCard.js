@@ -9,7 +9,7 @@ class GameCard extends React.Component{
     render(){
         return(
             <div className='gamer'>
-                <h4>{this.props.game.name}</h4>
+                <h5>{this.props.game.name}</h5>
                 <img src={this.props.game.img} alt={this.props.game.name} className="gamer-img"/>
                 <br/>
                 <button className='del-btn'> delete </button>

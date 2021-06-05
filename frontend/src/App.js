@@ -14,6 +14,8 @@ class App extends React.Component{
 
   state = {
     displayPlayer: '',
+    newGame: '',
+    newImg: '',
     choosePlayer: 'Johndhee',
     games: [],
   }
@@ -29,25 +31,23 @@ class App extends React.Component{
     })
   }
 
-  addGame = (gaming) =>{
-    const {name, img} = gaming
-    const newGame ={
-      name, 
-      img,
-    }
-    const configObj = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(newGame)
-    }
-    fetch(url, configObj)
-    .then(r =>r.json())
-    .then(data =>{
+  addGame = (e) =>{
+    e.preventDefault()
+    fetch(url, {
+      headers: {'Content-Type': 'application/json'},
+      method: "POST",
+      body: JSON.stringify({
+        name: this.state.newGame,
+        img: this.state.newImg,
+        player: this.state.choosePlayer
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
       this.setState({
-        games: [...this.state.games, data.game]
+        games: [...this.state.games, data.game],
+        newGame: '',
+        newImg: ''
       })
     })
   }
@@ -86,8 +86,26 @@ class App extends React.Component{
         <h2> Players: </h2>
         {PLAYERS.map((player, i) => <button onClick={this.clickPlayer} key={i}>{player}</button>)}
       </div>
-      <GameForm playerData={this.state.players} addGame={this.addGame}/>
-      {/* <GameCollection deleteGame={this.deleteGame} gameData={this.state.games}/> */}
+      <div>
+        <h3>Gamez: </h3>
+        <form>
+          <div>
+          <input onChange={(e) => this.setState({newGame: e.target.value})} placeholder="Enter Game's Name" type="text" value={this.state.newGame}></input>
+          <br/>
+          <input onChange={(e) => this.setState({newImg: e.target.value})} placeholder="Enter Game's IMG" type="text" value={this.state.newImg}></input>
+          <br/>
+          <select onChange={(e) => this.setState({choosePlayer: e.target.value})}>
+            <option>Johndhee</option>
+            <option>BaldBoi</option>
+            <option>Pekora</option>
+            <option>Zues</option>
+            <option>Fubuki</option>
+          </select>
+          <br/>
+          <input onClick={this.addGame} type="submit" value="Submit"></input>
+          </div>
+        </form>
+      </div>
       {filterGame.map((game, i ) => <GameCard game={game} key={i}  />)}
       </>
     )

@@ -19,8 +19,12 @@ class Application
 
     elsif req.path.match(/games/) && req.post?
       data = JSON.parse req.body.read
-      game = Game.create(data)
-      return [200, { 'Content-Type' => 'application/json' }, [ {game: game}.to_json ]]
+      player = Player.find_by(name: data['player'])
+      game = Game.create(name: data['name'], img: data['img'], player: player)
+
+      big_game = {id: game.id, name: game.name, img: game.img, player: game.player.name}
+
+      return [200, { 'Content-Type' => 'application/json' }, [ {game: big_game}.to_json ]]
 
     # elsif req.path.match(/games/) && req.delete?
     #   id = req.path.split('/games/').last
