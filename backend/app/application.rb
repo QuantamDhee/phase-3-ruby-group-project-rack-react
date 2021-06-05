@@ -6,13 +6,19 @@ class Application
 
     if req.path.match(/tests/) 
       return [200, { 'Content-Type' => 'application/json' }, [ {:message => "test response!"}.to_json ]]
-      
-    elsif req.path.match(/players/) && req.get?
-      players = Player.all
-      return [200, { 'Content-Type' => 'application/json' }, [ {players: players}.to_json ]]
+
+    # elsif req.path.match(/players/) && req.get?
+    #   players = Player.all
+    #   return [200, { 'Content-Type' => 'application/json' }, [ {players: players}.to_json ]]
 
     elsif req.path.match(/games/) && req.get?
+      players = Player.all
       games = Game.all
+      return [200, { 'Content-Type' => 'application/json' }, [ {games: games, players: players}.to_json ]]
+
+    elsif req.path.match(/games/) && req.post?
+      data = JSON.parse req.body.read
+      game = Game.create(data)
       return [200, { 'Content-Type' => 'application/json' }, [ {games: games}.to_json ]]
     else
       resp.write "you found me but nothing here"
