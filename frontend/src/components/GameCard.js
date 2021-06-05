@@ -12,7 +12,7 @@ class GameCard extends React.Component{
                 <h5>{this.props.game.name}</h5>
                 <img src={this.props.game.img} alt={this.props.game.name} className="gamer-img"/>
                 <br/>
-                <button className='del-btn'> delete </button>
+                <button onClick={()=> this.props.deleteGame(this.props.game)} className='del-btn'> delete </button>
             </div>
         )
     }

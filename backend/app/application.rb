@@ -26,10 +26,11 @@ class Application
 
       return [200, { 'Content-Type' => 'application/json' }, [ {game: big_game}.to_json ]]
 
-    # elsif req.path.match(/games/) && req.delete?
-    #   id = req.path.split('/games/').last
-    #   Game.find(id).delete
-    #   return [200, { 'Content-Type' => 'application/json' }, [ {message: "deleted"}.to_json ]]
+    elsif req.path.match(/games/) && req.delete?
+      id = req.path.split('/games/').last
+      Game.find(id).delete
+
+      return [200, { 'Content-Type' => 'application/json' }, [ {message: "Game is Deleted :("}.to_json ]]
     else
       resp.write "you found me but nothing here"
 

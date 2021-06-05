@@ -58,19 +58,19 @@ class App extends React.Component{
     this.setState({displayPlayer: e.target.innerText})
   }
 
-//   deleteGame = (deleter) => {
+  deleteGame = (deleter) => {
 
-//     fetch('http://localhost:9393/games/' + deleter.id, {
-//       method: "DELETE",
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
+    fetch('http://localhost:9393/games/' + deleter.id, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
 
-//     this.setState({
-//       games: this.state.games.filter(game => game !== deleter)
-//     })
-// }
+    this.setState({
+      games: this.state.games.filter(game => game !== deleter)
+    })
+}
 
  
 
@@ -106,7 +106,7 @@ class App extends React.Component{
           </div>
         </form>
       </div>
-      {filterGame.map((game, i ) => <GameCard game={game} key={i}  />)}
+      {filterGame.map((game, i ) => <GameCard deleteGame={this.deleteGame} game={game} key={i}  />)}
       </>
     )
   }
