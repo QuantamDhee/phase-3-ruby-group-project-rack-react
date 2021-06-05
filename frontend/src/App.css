@@ -1,4 +1,12 @@
-.App {
+.play-img{
+  width: 150px;
+  height: auto;
+}
+
+
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +43,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

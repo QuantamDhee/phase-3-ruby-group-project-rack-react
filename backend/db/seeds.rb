@@ -1,37 +1,23 @@
-puts "Clearing old data..."
-Competition.destroy_all
+puts "Clearing le data..."
 Player.destroy_all
 Game.destroy_all
 
-#creating comp seeds
-puts "Seeding Comp..."
-    # prize = rand(100...1000)
-    # dates = Faker::Date.in_date_period
-    Competition.create(name: "League of Legends Championships", prize: 800)
-    Competition.create(name: "Smooth Brain ", prize: 1000)
-    Competition.create(name: "Brain Not Work grand Finals", prize: 650)
-    Competition.create(name: "Pokemon World Championships", prize: 915)
+puts "I'm Seeding some players..."
+Player.create(name: "Johndhee", img: "https://blog.emojipedia.org/content/images/2021/03/hurt-wechat-sticker-emoji-emojipedia.jpg")
+Player.create(name: "BaldBoi", img: "https://blog.emojipedia.org/content/images/2021/03/hurt-wechat-sticker-emoji-emojipedia.jpg")
+Player.create(name: "Pekora", img: "https://blog.emojipedia.org/content/images/2021/03/hurt-wechat-sticker-emoji-emojipedia.jpg")
+Player.create(name: "Zues", img: "https://blog.emojipedia.org/content/images/2021/03/hurt-wechat-sticker-emoji-emojipedia.jpg")
+Player.create(name: "Fubuki", img: "https://blog.emojipedia.org/content/images/2021/03/hurt-wechat-sticker-emoji-emojipedia.jpg")
 
+puts "Now I'm seeding gamezz..."
+Game.create(name: "Black Desert Online", player: Player.all.sample)
+Game.create(name: "Maplestory", player: Player.all.sample)
+Game.create(name: "World Of Warcraft", player: Player.all.sample)
+Game.create(name: "Warzone", player: Player.all.sample)
+Game.create(name: "Minecraft", player: Player.all.sample)
+Game.create(name: "Path Of Exile", player: Player.all.sample)
 
-#Creating 5 randoms
-puts "Seeding Player..."
-    p1 = Player.create(name: "Johndhee")
-    p2 = Player.create(name: "Korone")
-    p3 = Player.create(name: "Pekora")
-    p4 = Player.create(name: "Zues")
-    p5 = Player.create(name: "Fubuki")
-
-#creating random game seeds
-puts "Seeding Game..."
-    # player_id = Player.ids.sample
-    competition_id = Competition.ids.sample
-    # games = ["BDO", "Maplestory", "World Of Warcraft", "Warzone"]
-    Game.create(player: p1, competition_id: competition_id, name: "Black Desert Online")
-    Game.create(player: p5, competition_id: competition_id, name: "Maplestory")
-    Game.create(player: p4, competition_id: competition_id, name: "World Of Warcraft")
-    Game.create(player: p2, competition_id: competition_id, name: "Warzone")
-    Game.create(player: p3, competition_id: competition_id, name: "Minecraft")
-    Game.create(player: p1, competition_id: competition_id, name: "Path Of Exile")
+puts "Done with all them seeding and sheesh..."
 
 
 

@@ -2,61 +2,36 @@ import React from 'react'
 import logo from './logo.svg';
 import './App.css';
 
-import Header from './components/Header'
-import CompContainer from './components/CompContainer'
-import CompForm from './components/CompForm'
+import PlayerCollection from './components/PlayerCollection'
 
-const Url = 'http://localhost:9393/competitions'
 
-class App extends React.Component {
+const url = "http://localhost:9393/players"
+
+class App extends React.Component{
 
   state = {
+    players: [],
     games: [],
-    competitions: [],
-    players: []
   }
 
   componentDidMount(){
-    fetch(Url)
+    fetch(url)
     .then(res => res.json())
-    .then(compData => {
+    .then(playerData => {
       this.setState({
-        competitions: compData.competitions
+        players: playerData.players
       })
     })
   }
 
-  addComp = (cData) =>{
-    const {name, prize} = cData
-    const newComp ={
-      name,
-      prize: parseInt(prize)
-    }
-    const configObj = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(newComp)
-    }
-    fetch(Url, configObj)
-    .then(r => r.json())
-    .then(data =>{
-      this.setState({
-       competitions: [...this.state.competitions, data.competition]
-      })
-    })
-  }
+
 
   render(){
-  return (
-    <>
-      {/* <Header/> */}
-      <CompForm addComp={this.addComp}/>
-      <CompContainer compData={this.state.competitions}/>
-    </>
-  )
+    return (
+      <>
+      <PlayerCollection playerData={this.state.players}/>
+      </>
+    )
   }
 }
 

@@ -12,19 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2021_06_01_225024) do
 
-  create_table "competitions", force: :cascade do |t|
-    t.string "name"
-    t.integer "prize"
-  end
-
   create_table "games", force: :cascade do |t|
-    t.integer "player_id"
-    t.integer "competition_id"
     t.string "name"
+    t.integer "player_id"
   end
 
   create_table "players", force: :cascade do |t|
     t.string "name"
+    t.string "img"
   end
 
 end
