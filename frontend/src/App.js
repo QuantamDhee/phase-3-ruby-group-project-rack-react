@@ -2,10 +2,10 @@ import React from 'react'
 import logo from './logo.svg';
 import './App.css';
 
-import PlayerCollection from './components/PlayerCollection'
+import GameCollection from './components/GameCollection'
 
 
-const url = "http://localhost:9393/players"
+const url = "http://localhost:9393/games"
 
 class App extends React.Component{
 
@@ -17,9 +17,9 @@ class App extends React.Component{
   componentDidMount(){
     fetch(url)
     .then(res => res.json())
-    .then(playerData => {
+    .then(gameData => {
       this.setState({
-        players: playerData.players
+        games: gameData.games
       })
     })
   }
@@ -29,7 +29,7 @@ class App extends React.Component{
   render(){
     return (
       <>
-      <PlayerCollection playerData={this.state.players}/>
+      <GameCollection gameData={this.state.games}/>
       </>
     )
   }
